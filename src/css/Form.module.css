@@ -1,0 +1,34 @@
+.error {
+  color: #ff0000;
+  font-size: 15px;
+}
+
+.heading {
+  font-family: 'Merriweather Sans', sans-serif;
+  font-size: 50px;
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.formLabel {
+  color: #ffb366;
+  font-size: 30px;
+  width: 40px;
+  height: 40px;
+  border: 2px solid grey;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+}
+
+.formLabel:hover {
+  /* background-color: #ffb366; */
+}
+
