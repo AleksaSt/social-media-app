@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react"
 import { Card, Button, Form, Alert } from "react-bootstrap"
 import { useAuth } from "../contexts/AuthContext"
 import { useHistory } from "react-router"
+import LoginCSS from "../css/Login.module.css"
 
 const Login = () => {
   const emailRef = useRef()
@@ -27,24 +28,31 @@ const Login = () => {
   
   return (
     <>
-      <Card>
+    <div className={LoginCSS.mainDiv}>
+      <Card className={LoginCSS.mainCard}>
         <Card.Body>
+          <h1 className={LoginCSS.mainHeading}>Log in</h1>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
-              <Form.Label>Email address</Form.Label>
+              <Form.Label className={LoginCSS.emailAndPassword}>Email address</Form.Label>
               <Form.Control type="email" ref={emailRef} required />
             </Form.Group>
             <Form.Group id="password">
-              <Form.Label>Password</Form.Label>
+              <Form.Label className={LoginCSS.emailAndPassword}>Password</Form.Label>
               <Form.Control type="password" ref={passwordRef} required />
             </Form.Group>
-            <Button disabled={loading} variant="primary" type="submit">
-              Log In
-            </Button>
+            <div className={LoginCSS.registerText}>Don't have an account? Register<a href="/signup"> here</a></div>
+            <div className={LoginCSS.MainButtonDiv}>
+              <Button disabled={loading} variant="primary" type="submit" className={LoginCSS.button}>
+                Log In
+              </Button>
+            </div>
           </Form>
         </Card.Body>
       </Card>
+    </div>
+      
     </>
   )
 }

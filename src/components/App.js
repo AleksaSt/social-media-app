@@ -7,11 +7,13 @@ import Dashboard from "./Dashboard"
 import Login from "./Login"
 import PrivateRoute from "./PrivateRoute";
 import UploadForm from "./UploadForm";
+import NavbarPage from "./NavbarPage";
 
 function App() {
   return (
     <Container>
       <Router>
+      <NavbarPage />
         <AuthProvider>
           <Switch>
             <PrivateRoute exact path="/" component={Dashboard} />

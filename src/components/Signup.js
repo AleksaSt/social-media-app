@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react"
 import { Card, Button, Form, Alert } from "react-bootstrap"
 import { useAuth } from "../contexts/AuthContext"
 import { useHistory } from "react-router"
+import SignupCSS from "../css/Signup.module.css"
 
 const SignUp = () => {
   const emailRef = useRef()
@@ -36,28 +37,34 @@ const SignUp = () => {
   
   return (
     <>
-      <Card>
-        <Card.Body>
-          {error && <Alert variant="danger">{error}</Alert>}
-          <Form onSubmit={handleSubmit}>
-            <Form.Group id="email">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" ref={emailRef} required />
-            </Form.Group>
-            <Form.Group id="password">
-              <Form.Label>Password</Form.Label>
-              <Form.Control type="password" ref={passwordRef} required />
-            </Form.Group>
-            <Form.Group id="password-confirm">
-              <Form.Label>Confirm Password</Form.Label>
-              <Form.Control type="password"ref={passwordConfirmRef} required />
-            </Form.Group>
-            <Button disabled={loading} variant="primary" type="submit">
-              Sign Up
-            </Button>
-          </Form>
-        </Card.Body>
-      </Card>
+      <div className={SignupCSS.mainDiv}>
+        <Card className={SignupCSS.mainCard}>
+        <h1 className={SignupCSS.mainHeading}>Sign up</h1>
+          <Card.Body>
+            {error && <Alert variant="danger">{error}</Alert>}
+            <Form onSubmit={handleSubmit}>
+              <Form.Group id="email">
+                <Form.Label className={SignupCSS.emailAndPassword}>Email address</Form.Label>
+                <Form.Control type="email" ref={emailRef} required />
+              </Form.Group>
+              <Form.Group id="password">
+                <Form.Label className={SignupCSS.emailAndPassword}>Password</Form.Label>
+                <Form.Control type="password" ref={passwordRef} required />
+              </Form.Group>
+              <Form.Group id="password-confirm">
+                <Form.Label className={SignupCSS.emailAndPassword}>Confirm Password</Form.Label>
+                <Form.Control type="password"ref={passwordConfirmRef} required />
+              </Form.Group>
+              <div className={SignupCSS.registerText}>Already have an account? Log in<a href="/login"> here</a></div>
+              <div className={SignupCSS.MainButtonDiv}>
+                <Button disabled={loading} variant="primary" type="submit" className={SignupCSS.button}>
+                  Sign Up
+                </Button>
+              </div>
+            </Form>
+          </Card.Body>
+        </Card>
+      </div>
     </>
   )
 }

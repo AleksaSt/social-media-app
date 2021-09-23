@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import ProgressBar from './ProgressBar'
 import ImageGrid from './ImageGrid'
 import FormCSS  from "../css/Form.module.css"
+import Modal from "./Modal"
 
 const UploadForm = () => {
   const [file, setFile] = useState(null)
   const [error, setError] = useState(null)
+  const [selectedImg, setSelectedImg] = useState(null)
 
   const types = ["image/jpeg", "image/png"]
 
@@ -25,16 +27,18 @@ const UploadForm = () => {
   return (
     <form>
       <h1 className={FormCSS.heading}>Your Pictures</h1>
-      <div>
-        <label className={FormCSS.formLabel} for="input-file">
+      <h5 className={FormCSS.headingTwo}>Post your favorite pictures in your very own gallery!</h5>
+      <div className={FormCSS.formDiv}>
+      <label className={FormCSS.formLabel} for="input-file">
           <div>+</div>
         </label>
-        <input type="file" id="input-file" onChange={changeHandler}/>
+      </div>
+        <input type="file" id="input-file" onChange={changeHandler} />
         {error && <div className={FormCSS.error}>{error}</div> }
         {file && <div>{file.name}</div> }
         {file && <ProgressBar file={file} setFile={setFile} />}
-        <ImageGrid />
-      </div>
+        <ImageGrid setSelectedImg={setSelectedImg} />
+        {selectedImg && <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />}
     </form>
   )
 }
