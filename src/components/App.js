@@ -8,6 +8,7 @@ import Login from "./Login"
 import PrivateRoute from "./PrivateRoute";
 import UploadForm from "./UploadForm";
 import NavbarPage from "./NavbarPage";
+import Footer from "./Footer";
 
 function App() {
   return (
@@ -19,9 +20,10 @@ function App() {
             <PrivateRoute exact path="/" component={Dashboard} />
             <Route path="/signup" component={Signup} />
             <Route path="/login" component={Login} />
-            <Route path="/upload" component={UploadForm} />
+            <PrivateRoute path="/upload" component={UploadForm} />
           </Switch>
         </AuthProvider>
+      <Footer />
       </Router>
     </Container>
   ) 
