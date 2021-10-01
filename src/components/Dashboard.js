@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Card, Button, Alert } from "react-bootstrap"
 import { useAuth } from "../contexts/AuthContext"
-import { useHistory } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import DashCSS from "../css/Dashboard.module.css"
 
 export default function Dashboard() {
@@ -54,6 +54,7 @@ export default function Dashboard() {
           {error && <Alert variant="danger">{error}</Alert>}
           {uploadError && <Alert variant="danger">{uploadError}</Alert>}
           <div className={DashCSS.email}>Email: {currentUser.email}</div>
+          <Link to="/gallery" />
           <div className={DashCSS.MainButtonDiv}>
             <Button onClick={handleLogout} variant="primary" className={DashCSS.button}>
               Log Out

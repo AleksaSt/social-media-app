@@ -9,6 +9,7 @@ import PrivateRoute from "./PrivateRoute";
 import UploadForm from "./UploadForm";
 import NavbarPage from "./NavbarPage";
 import Footer from "./Footer";
+import ErrorPage from "./ErrorPage";
 
 function App() {
   return (
@@ -17,10 +18,11 @@ function App() {
       <NavbarPage />
         <AuthProvider>
           <Switch>
+            <Route path='*' component={ErrorPage} />
             <PrivateRoute exact path="/" component={Dashboard} />
             <Route path="/signup" component={Signup} />
             <Route path="/login" component={Login} />
-            <PrivateRoute path="/upload" component={UploadForm} />
+            <PrivateRoute path="/gallery" component={UploadForm} />
           </Switch>
         </AuthProvider>
       <Footer />
