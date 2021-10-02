@@ -4,8 +4,8 @@ import ProgressCSS from "../css/ProgressBar.module.css"
 import { motion } from "framer-motion"
 
 const ProgressBar = ({file, setFile}) => {
-  const { url, progress } = useStorage(file)
-  console.log(progress, url)
+  const { url, progress } = useStorage(file, 'images')
+  // console.log(progress, url)
 
   useEffect(() => {
 

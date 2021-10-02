@@ -18,11 +18,11 @@ function App() {
       <NavbarPage />
         <AuthProvider>
           <Switch>
-            <Route path='*' component={ErrorPage} />
             <PrivateRoute exact path="/" component={Dashboard} />
             <Route path="/signup" component={Signup} />
             <Route path="/login" component={Login} />
             <PrivateRoute path="/gallery" component={UploadForm} />
+            <Route path='*' component={ErrorPage} />
           </Switch>
         </AuthProvider>
       <Footer />

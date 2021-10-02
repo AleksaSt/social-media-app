@@ -14,9 +14,9 @@ export default function Dashboard() {
   const types = ["image/jpeg", "image/png"]
 
   const changeHandler = (e) => {
-
+    
     let selected = e.target.files[0]
-    console.log(selected)
+    // console.log(selected)
     if(selected && types.includes(selected.type)){
       setFile(selected)
       setUploadError("")
@@ -54,7 +54,9 @@ export default function Dashboard() {
           {error && <Alert variant="danger">{error}</Alert>}
           {uploadError && <Alert variant="danger">{uploadError}</Alert>}
           <div className={DashCSS.email}>Email: {currentUser.email}</div>
-          <Link to="/gallery" />
+          <Link to="/gallery">
+            <div>Go to gallery</div>
+          </Link>
           <div className={DashCSS.MainButtonDiv}>
             <Button onClick={handleLogout} variant="primary" className={DashCSS.button}>
               Log Out

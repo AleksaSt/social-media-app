@@ -2,18 +2,18 @@ import { useState, useEffect } from 'react'
 import { projectStorage, projectFirestore, timestamp } from "../firebase"
 import { useAuth } from "../contexts/AuthContext"
 
-const useStorage = (file, collection) => {
+const ImagesUpload = (file) => {
   const [progress, setProgress] = useState(0)
   const [error, setError] = useState(null)
   const [url, setUrl] = useState(null)
 
-  const { currentUser } = useAuth()
 
   useEffect(() => {
 
     let storageRef = null;
     let collectionRef = null;
-
+    const { currentUser } = useAuth()
+    
     switch (collection) {
       case 'images':
         storageRef = projectStorage.ref(file.name)
@@ -31,6 +31,7 @@ const useStorage = (file, collection) => {
       const url = await storageRef.getDownloadURL()
       const createdAt = timestamp()
       const userId = currentUser.uid
+      console.log(userId)
       collectionRef.add({ url, userId, createdAt })
       setUrl(url)
     })
@@ -40,4 +41,4 @@ const useStorage = (file, collection) => {
   
 }
 
-export default useStorage
+export default ImagesUpload

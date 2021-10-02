@@ -1,11 +1,24 @@
 import { useState, useEffect } from 'react'
 import { projectFirestore } from '../firebase'
+import { useAuth } from "../contexts/AuthContext"
 
 const useFirestore = (collection) => {
   const [docs, setDocs] = useState([])
+  const { currentUser } = useAuth()
 
   useEffect(()=> {
-    const unsub = projectFirestore.collection(collection)
+
+    let unsub = null;
+    switch (collection) {
+      case 'images':
+        unsub = projectFirestore.collection(collection).where('userId', '==', currentUser.uid)
+        break;
+      case 'users':
+        unsub = projectFirestore.collection(collection)
+    }
+
+    
+    unsub
     .orderBy('createdAt', 'desc')
     .onSnapshot((snap) => {
       let documents = []
@@ -14,7 +27,7 @@ const useFirestore = (collection) => {
       });
       setDocs(documents)
     })
-    return () => unsub()
+    // return () => unsub()
 
   }, [collection])
 
